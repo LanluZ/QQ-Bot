@@ -11,7 +11,7 @@ __plugin_iskeyword__ = False  # 是否需要触发关键词
 __plugin_command__ = ["关键词屏蔽"]  # 触发关键词
 __plugin_author__ = "LanluZ"  # 插件作者
 __plugin_version__ = 1.0  # 插件版本
-__plugin_dir__ = "./plugins/keyword-block"  # 插件所在目录
+__plugin_dir__ = "keyword-block"  # 插件所在目录名称
 
 ban_filename = "ban.txt"
 
@@ -40,7 +40,7 @@ async def add_ban_word(word: str, client: bot.BotClient, message: Message):
     # 权限判断
     if message.author.id == client.admin_id:
         # 加载屏蔽词
-        with open(os.path.join(__plugin_dir__, ban_filename), "r", encoding="utf-8") as f:
+        with open(os.path.join("./plugins/", __plugin_dir__, ban_filename), "r", encoding="utf-8") as f:
             ban = f.read()
             ban_list = ban.split(",")
             # 添加屏蔽词
@@ -49,7 +49,7 @@ async def add_ban_word(word: str, client: bot.BotClient, message: Message):
                     ban_list.remove("")
             ban_list.append(word)
         # 保存屏蔽词
-        with open(os.path.join(__plugin_dir__, ban_filename), "w", encoding="utf-8") as f:
+        with open(os.path.join("./plugins/", __plugin_dir__, ban_filename), "w", encoding="utf-8") as f:
             for ban_word in ban_list:
                 f.write(ban_word)
                 f.write(",")
@@ -63,7 +63,7 @@ async def del_ban_word(word: str, client: bot.BotClient, message: Message):
     # 权限判断
     if message.author.id == client.admin_id:
         # 加载屏蔽词
-        with open(os.path.join(__plugin_dir__, ban_filename), "r", encoding="utf-8") as f:
+        with open(os.path.join("./plugins/", __plugin_dir__, ban_filename), "r", encoding="utf-8") as f:
             ban = f.read()
             ban_list = ban.split(",")
             # 删除屏蔽词
@@ -73,7 +73,7 @@ async def del_ban_word(word: str, client: bot.BotClient, message: Message):
                 await message.reply(content="无此关键词")
                 return
         # 保存屏蔽词
-        with open(os.path.join(__plugin_dir__, ban_filename), "w", encoding="utf-8") as f:
+        with open(os.path.join("./plugins/", __plugin_dir__, ban_filename), "w", encoding="utf-8") as f:
             for ban_word in ban_list:
                 f.write(ban_word)
                 f.write(",")
@@ -87,7 +87,7 @@ async def show_ban_word(client: bot.BotClient, message: Message):
     # 权限判断
     if message.author.id == client.admin_id:
         # 加载屏蔽词
-        with open(os.path.join(__plugin_dir__, ban_filename), "r", encoding="utf-8") as f:
+        with open(os.path.join("./plugins/", __plugin_dir__, ban_filename), "r", encoding="utf-8") as f:
             ban = f.read()
             ban_list = ban.split(",")
             await message.reply(content=str(ban_list))
@@ -103,7 +103,7 @@ async def info_ban_word(client: bot.BotClient, message: Message):
 # 屏蔽
 async def ban_word(client: bot.BotClient, message: Message):
     # 加载屏蔽词
-    with open(os.path.join(__plugin_dir__, ban_filename), "r", encoding="utf-8") as f:
+    with open(os.path.join("./plugins/", __plugin_dir__, ban_filename), "r", encoding="utf-8") as f:
         ban = f.read()
         ban_list = ban.split(",")
         for word in ban_list:

@@ -7,6 +7,7 @@ __plugin_iskeyword__ = True  # 是否需要触发关键词
 __plugin_command__ = ["调试"]  # 触发关键词
 __plugin_author__ = "LanluZ"  # 插件作者
 __plugin_version__ = 1.0  # 插件版本
+__plugin_dir__ = "debug"  # 插件所在目录名称
 
 
 async def __init__(command, client: bot.BotClient, message: Message):
