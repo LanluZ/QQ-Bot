@@ -3,11 +3,11 @@ import os
 import botpy
 import importlib
 
-import getkit
+from src import getkit
 
 from botpy import logging
 from botpy.ext.cog_yaml import read
-from botpy.message import GroupMessage, Message
+from botpy.message import Message
 
 config = read(os.path.join(os.path.dirname(__file__), "config.yaml"))
 
@@ -19,6 +19,7 @@ plugins_path = os.path.join(cwd_path, "plugins")
 
 class BotClient(botpy.Client):
     plugins = dict()
+    admin_id = config["admin_id"]
 
     # 初始化机器人事件
     async def on_ready(self):  # 准备就绪事件
@@ -36,6 +37,8 @@ class BotClient(botpy.Client):
             plugin_version = self.plugins[plugin[0]].__plugin_version__
 
             _log.info(f"「{plugin_name}」{plugin_author} {plugin_version}")
+
+        _log.info("==========完成载入插件==========")
 
     # at消息事件监听
     async def on_at_message_create(self, message: Message):
