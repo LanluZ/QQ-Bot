@@ -47,7 +47,7 @@ class BotClient(botpy.Client):
     async def on_message_create(self, message: Message):
         if "sleep" in message.content:
             await asyncio.sleep(10)
-        _log.info(message.author.username)
+        _log.info(f"{message.author.username} {message.content}")
 
         # 命令匹配
         message_command = getkit.get_message_command(message)  # 提取会话消息中命令
