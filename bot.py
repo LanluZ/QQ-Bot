@@ -55,13 +55,6 @@ class BotClient(botpy.Client):
             self.plugins[plugin_name].__init__(message_command)
 
 
-def get_roles_id_by_name(roles: list, name: str):
-    for role in roles:
-        if role['name'] == name:
-            return role['id']
-    return None
-
-
 if __name__ == "__main__":
     # 通过预设置的类型，设置需要监听的事件通道
     # intents = botpy.Intents.none()
