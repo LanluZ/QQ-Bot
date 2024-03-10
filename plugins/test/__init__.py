@@ -7,6 +7,6 @@ __plugin_author__ = "LanluZ"  # 插件作者
 __plugin_version__ = 1.0  # 插件版本
 
 
-def __init__(command):
+def __init__(command, message):
     if command == __plugin_command__:
         print("模板测试成功")
