@@ -4,10 +4,17 @@
 
 ---
 
-## 使用
+## 准备
 
 1. 在 [QQ开放平台](https://q.qq.com) 注册开发者账号并创建QQ机器人
-2. 在 [QQ开放平台](https://q.qq.com) 机器人管理中找到 **AppId** 和 **AppSecret** 并填入 ```/config.yaml``` 文件
+2. 在 [QQ开放平台](https://q.qq.com) 机器人管理中找到 **AppId** 和 **AppSecret** 并填入 ```/config.yaml```
+
+## 部署
+
+1. 下载仓库文件
+2. 安装依赖```pip install -r requirements.txt```
+3. 填写```/config.yaml```
+4. 运行```python bot.py```
 
 ## 开发
 
