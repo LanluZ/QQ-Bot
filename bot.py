@@ -9,6 +9,7 @@ from botpy import logging
 from botpy.ext.cog_yaml import read
 from botpy.message import Message
 
+# 读取配置文件
 config = read(os.path.join(os.path.dirname(__file__), "config.yaml"))
 
 _log = logging.get_logger()
@@ -19,6 +20,7 @@ plugins_path = os.path.join(cwd_path, "plugins")
 
 class BotClient(botpy.Client):
     plugins = dict()
+    plugins_path = plugins_path
     admin_id = config["admin_id"]
 
     # 初始化机器人事件
