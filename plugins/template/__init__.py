@@ -11,4 +11,5 @@ __plugin_version__ = 1.0  # 插件版本
 
 async def __init__(command, client: bot.BotClient, message: Message):
     if not __plugin_iskeyword__ or command in __plugin_command__:
+        # 再此键入代码
         print("模板插件")
