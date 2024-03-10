@@ -11,5 +11,5 @@
 
 ## 开发
 
-- 参考官方文档 [QQ机器人文档](https://bot.q.qq.com/wiki)
-- 参考插件格式 ```/plugins/template/__init__.py```
+- 官方文档 参考 [QQ机器人文档](https://bot.q.qq.com/wiki)
+- 插件格式 参考 ```/plugins/template/__init__.py```
