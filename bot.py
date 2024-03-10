@@ -43,7 +43,7 @@ class BotClient(botpy.Client):
             await asyncio.sleep(10)
         _log.info(message.author.username)
 
-    # 普通消息事件监听
+    # 普通消息事件监听 仅私域机器人可用
     async def on_message_create(self, message: Message):
         if "sleep" in message.content:
             await asyncio.sleep(10)
@@ -58,5 +58,5 @@ class BotClient(botpy.Client):
 if __name__ == "__main__":
     # 通过kwargs，设置需要监听的事件通道
     intents = botpy.Intents(public_guild_messages=True, guild_messages=True)
-    client = BotClient(intents=intents, )
+    client = BotClient(intents=intents)
     client.run(appid=config["appid"], secret=config["secret"])
