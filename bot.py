@@ -3,7 +3,7 @@ import os
 import botpy
 import importlib
 
-import getKit
+import getkit
 
 from botpy import logging
 from botpy.ext.cog_yaml import read
@@ -26,7 +26,7 @@ class BotClient(botpy.Client):
         _log.info("==========开始载入插件==========")  # 日志
 
         # 载入插件
-        plugin_list = getKit.get_plugin_list(plugins_path)
+        plugin_list = getkit.get_plugin_list(plugins_path)
         for plugin in plugin_list:
             self.plugins[plugin[0]] = importlib.import_module(plugin[1])
 
