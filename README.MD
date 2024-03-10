@@ -1,5 +1,15 @@
 # 还没想好叫什么的机器人
 
+和还没写好的README
+
 ---
 
-如题
+## 使用
+
+1. 在 [QQ开放平台](https://q.qq.com) 注册开发者账号并创建QQ机器人
+2. 在 [QQ开放平台](https://q.qq.com) 机器人管理中找到 **AppId** 和 **AppSecret** 并填入 ```/config.yaml``` 文件
+
+## 开发
+
+- 参考官方文档 [QQ机器人文档](https://bot.q.qq.com/wiki)
+- 参考插件格式 ```/plugins/template/__init__.py```
