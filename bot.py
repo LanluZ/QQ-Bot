@@ -37,7 +37,7 @@ class BotClient(botpy.Client):
 
             _log.info(f"「{plugin_name}」{plugin_author} {plugin_version}")
 
-    # @消息事件监听
+    # at消息事件监听
     async def on_at_message_create(self, message: Message):
         if "sleep" in message.content:
             await asyncio.sleep(10)
