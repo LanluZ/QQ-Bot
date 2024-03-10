@@ -7,7 +7,7 @@ from src import getkit
 
 from botpy import logging
 from botpy.ext.cog_yaml import read
-from botpy.message import Message
+from botpy.message import Message, DirectMessage
 
 # 读取配置文件
 config = read(os.path.join(os.path.dirname(__file__), "config.yaml"))
@@ -23,7 +23,7 @@ class BotClient(botpy.Client):
     plugins_path = plugins_path
     admin_id = config["admin_id"]
 
-    # 初始化机器人事件
+    # ==========初始化事件==========
     async def on_ready(self):  # 准备就绪事件
         _log.info(f"「{self.robot.name}」初始化")
         _log.info("==========开始载入插件==========")
@@ -42,16 +42,20 @@ class BotClient(botpy.Client):
 
         _log.info("==========完成载入插件==========")
 
-    # at消息事件监听
+    # ==========公域消息事件==========
+    # at机器人消息事件
     async def on_at_message_create(self, message: Message):
-        if "sleep" in message.content:
-            await asyncio.sleep(10)
-        _log.info(message.author.username)
+        pass
+
+    # 频道消息被删除事件
+    async def on_public_message_delete(self, message: Message):
+        pass
+
+    # ==========消息事件==========
 
     # 普通消息事件监听 仅私域机器人可用
     async def on_message_create(self, message: Message):
-        if "sleep" in message.content:
-            await asyncio.sleep(10)
+        # 日志-消息记录
         _log.info(f"{message.author.username} {message.content}")
 
         # 命令匹配
@@ -59,9 +63,38 @@ class BotClient(botpy.Client):
         for plugin_name in self.plugins:
             await self.plugins[plugin_name].__init__(message_command, self, message)
 
+    # 撤回消息事件
+    async def on_message_delete(self, message: Message):
+        pass
+
+    # ==========私信事件==========
+
+    # 私信消息事件
+    async def on_direct_message_create(self, message: DirectMessage):
+        pass
+
+    # 撤回消息事件
+    async def on_direct_message_delete(self, message: DirectMessage):
+        pass
+
+
+# ==========消息互动事件==========
+
+# ==========频道事件==========
+
+# ==========频道成员事件==========
+
+# ==========互动事件==========
+
+# ==========消息审核事件==========
+
+# ==========论坛事件==========
+
+# ==========音频事件==========
+
 
 if __name__ == "__main__":
     # 通过kwargs，设置需要监听的事件通道
-    intents = botpy.Intents(public_guild_messages=True, guild_messages=True)
+    intents = botpy.Intents(public_guild_messages=True, guild_messages=False)
     client = BotClient(intents=intents)
     client.run(appid=config["appid"], secret=config["secret"])
