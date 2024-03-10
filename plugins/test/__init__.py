@@ -8,5 +8,7 @@ __plugin_version__ = 1.0  # 插件版本
 
 
 def __init__(command, message):
+    if not __plugin_iskeyword__:
+        return
     if command == __plugin_command__:
         print("模板测试成功")
