@@ -13,3 +13,7 @@
 
 - 官方文档 参考 [QQ机器人文档](https://bot.q.qq.com/wiki)
 - 插件格式 参考 ```/plugins/template/__init__.py```
+
+## 插件
+
+1. 关键词屏蔽
