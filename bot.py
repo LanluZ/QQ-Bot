@@ -43,6 +43,12 @@ class BotClient(botpy.Client):
             await asyncio.sleep(10)
         _log.info(message.author.username)
 
+    # 普通消息事件监听
+    async def on_message_create(self, message: Message):
+        if "sleep" in message.content:
+            await asyncio.sleep(10)
+        _log.info(message.author.username)
+
         # 命令匹配
         message_command = getkit.get_message_command(message)  # 提取会话消息中命令
         for plugin_name in self.plugins:
@@ -50,10 +56,7 @@ class BotClient(botpy.Client):
 
 
 if __name__ == "__main__":
-    # 通过预设置的类型，设置需要监听的事件通道
-    # intents.public_messages=True
-
     # 通过kwargs，设置需要监听的事件通道
-    intents = botpy.Intents(public_guild_messages=True)
+    intents = botpy.Intents(public_guild_messages=True, guild_messages=True)
     client = BotClient(intents=intents, )
     client.run(appid=config["appid"], secret=config["secret"])
