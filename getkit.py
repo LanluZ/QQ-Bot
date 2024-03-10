@@ -15,7 +15,7 @@ def get_plugin_list(plugins_path: str):
     return plugin_list
 
 
-# 提取Message中命令部分
+# 如果有则提取Message中指令部分
 def get_message_command(message: Message):
     if message.content.find("/") != -1:  # 是否属于命令调用
         message_content = message.content.replace("/", "")
