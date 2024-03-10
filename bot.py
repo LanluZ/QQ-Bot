@@ -30,15 +30,15 @@ class BotClient(botpy.Client):
         for plugin in plugin_list:
             self.plugins[plugin[0]] = importlib.import_module(plugin[1])
 
+            # 输出载入插件相关信息
             plugin_name = self.plugins[plugin[0]].__plugin_name__
             plugin_author = self.plugins[plugin[0]].__plugin_author__
             plugin_version = self.plugins[plugin[0]].__plugin_version__
 
-            _log.info(f"「{plugin_name}」{plugin_author} {plugin_version}")  # 日志
+            _log.info(f"「{plugin_name}」{plugin_author} {plugin_version}")
 
     # @消息事件监听
     async def on_at_message_create(self, message: Message):
-        _log.info(message.author.avatar)  # 日志-头像
         if "sleep" in message.content:
             await asyncio.sleep(10)
         _log.info(message.author.username)  # 日志-用户名
@@ -48,11 +48,11 @@ class BotClient(botpy.Client):
         message_command = ""
         if message_content[0] == "/":  # 是否属于命令调用
             message_content = message_content.replace("/", "")
-            message_command = message_content.split(" ")  # 提取命令
+            message_command = message_content.split(" ")[0]  # 提取命令
 
         # 命令匹配
         for plugin_name in self.plugins:
-            self.plugins[plugin_name].__init__(message_command)
+            self.plugins[plugin_name].__init__(message_command, message_content)
 
 
 if __name__ == "__main__":
